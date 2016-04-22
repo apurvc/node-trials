@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
-
-	var todoSchema = new mongoose.Schema({
-	    text : String,
-	    done : Boolean	
-	})
-	var Todo = mongoose.model('Todo', todoSchema );
-    module.exports.Todo = Todo;
+var db = require('../../config/database').db;
+	
+var todoSchema = new mongoose.Schema({
+	text : String,
+	done : Boolean	
+})
+var Todo = db.model('Todo', todoSchema );
+module.exports.Todo = Todo;

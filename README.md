@@ -12,7 +12,7 @@ https://blog.ajduke.in/2013/04/10/install-setup-and-start-mongodb-on-windows/
 
 1. npm install
 2. node server.js
-
+Then access http://localhost:3000/app
 
 ## Developing
 

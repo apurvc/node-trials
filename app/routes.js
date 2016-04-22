@@ -1,5 +1,4 @@
 var fs = require('fs');
-var Todo = require('./model/todo').Todo;
 
 module.exports = function (router) {
 
@@ -17,7 +16,7 @@ module.exports = function (router) {
 		});
 	});
 	// router.get('/users', user.list);
-	router.get('/video', function (req, res) {
+	/*router.get('/video', function (req, res) {
 		fs.readdir(__dirname, function (err, files) {
 			if (err) {
 				console.log(err);
@@ -26,35 +25,7 @@ module.exports = function (router) {
 				console.log(name);
 			});
 		});
-		res.sendfile("views\\index.html");
-	});
+		res.sendfile("public\\index.html");
+	});*/
 
-	router.get('/api/todos', function (req, res) {
-		Todo.find(function (err, todos) {
-			if (!err) {
-				res.send(todos);
-			} else {
-				return res.send({
-					error : 'Server error'
-				});
-			}
-		});
-	});
-
-	router.post('/api/todo', function (req, res) {
-		Todo.create({
-			text : req.body.text,
-			done : req.body.done
-		}, function (err, todo) {
-			if (err)
-				res.send(err);
-			// get and return all the todos after you create another
-			Todo.find(function (err, todos) {
-				if (err)
-					res.send(err)
-					res.json(todos);
-			});
-		});
-
-	});
 }
