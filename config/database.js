@@ -33,4 +33,4 @@ function connect () {
 connect.time = 0;
 connect();
 
-module.exports.db = db;
+module.exports = db;
