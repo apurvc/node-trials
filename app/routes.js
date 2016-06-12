@@ -1,4 +1,5 @@
 var fs = require('fs');
+var moment = require('moment');
 
 module.exports = function (router) {
 
@@ -15,6 +16,19 @@ module.exports = function (router) {
 			message : 'hooray! welcome to our api!'
 		});
 	});
+    //for get calls
+	router.get('/api/:date', function (req, res) {
+		if(moment(req.params.date).isValid()){
+			return res.send({
+					unix : moment.utc(req.params.date).valueOf(),
+					natural: moment.utc(req.params.date).format("MMMM, DD YYYY")
+				});			
+		}else{
+			return res.send({
+					error : 'Server error'
+				});
+		}
+	});		
 	// router.get('/users', user.list);
 	/*router.get('/video', function (req, res) {
 		fs.readdir(__dirname, function (err, files) {
