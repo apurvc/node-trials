@@ -1,4 +1,5 @@
 var Todo = require('./model/todo');
+var moment = require('moment');
 
 module.exports = function (router) {
     //for get calls
@@ -13,6 +14,19 @@ module.exports = function (router) {
 			}
 		});
 	});
+    //for get calls
+	router.get('/api/:date', function (req, res) {
+		if(moment(req.params.date).isValid()){
+			return res.send({
+					unix : moment.utc(req.params.date).valueOf(),
+					natural: moment.utc(req.params.date).format("MMMM, DD YYYY")
+				});			
+		}else{
+			return res.send({
+					error : 'Server error'
+				});
+		}
+	});	
     //for get calls
 	router.get('/api/todos/:todo_id', function (req, res) {
 		Todo.findById(req.params.todo_id,function (err, todo) {
